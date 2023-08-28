@@ -82,9 +82,9 @@ const App = () => {
               <img src="https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg" alt={tour.name} />
               <div className="tour-info">
                 <h2>{tour.name}</h2>
-                <p>{tour.info.slice(0, 200)}</p>
+                <p id={`tour-item-para-${tour.id}`}>{tour.info.slice(0, 200)}</p>
                 <p className="tour-price">${tour.price}</p>
-                <button className="delete-btn" onClick={() => handleDeleteTour(tour.id)}>
+                <button id={`delete-btn-${tour.id}`} className="delete-btn" onClick={() => handleDeleteTour(tour.id)}>
                   Not Interested
                 </button>
               </div>
