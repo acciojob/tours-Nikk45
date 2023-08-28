@@ -45,6 +45,8 @@ const App = () => {
 
   const [tours, setTours] = useState(initialTours);
   const [isLoading, setIsLoading] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
+
 
   useEffect(() => {
     // Simulate loading data from an API
@@ -61,6 +63,11 @@ const App = () => {
   const handleRefresh = () => {
     setTours(initialTours);
   };
+
+
+  const viewPara=()=>{
+    isClicked ? setIsClicked(false) : setIsClicked(true)
+  }
 
 
     return(
@@ -82,7 +89,8 @@ const App = () => {
               <img src="https://dl.airtable.com/.attachments/a0cd0702c443f31526267f38ea5314a1/2447eb7a/paris.jpg" alt={tour.name} />
               <div className="tour-info">
                 <h2>{tour.name}</h2>
-                <p id={`tour-item-para-${tour.id}`}>{tour.info.slice(0, 200)}</p>
+                {isClicked ? <p id={`tour-item-para-${tour.id}`}>{tour.info}<button id={`#see-more-${tour.id}`} onClick={viewPara}>Show less</button></p>
+                :<p id={`tour-item-para-${tour.id}`}>{tour.info.slice(0, 200)}<button id={`#see-more-${tour.id}`} onClick={viewPara}>See more</button></p>}
                 <p className="tour-price">${tour.price}</p>
                 <button id={`delete-btn-${tour.id}`} className="delete-btn" onClick={() => handleDeleteTour(tour.id)}>
                   Not Interested
